@@ -1,0 +1,13 @@
+$ git log
+commit 113d3122f4ca3ba24bdec0f4be3bd162f040a6f4 (HEAD -> master)
+Author: Mlynorik Alina <alina.sudnick@gmail.com>
+Date:   Thu Feb 11 17:43:54 2021 +0300
+
+    add status.txt
+
+commit 00a21f20a5d6340ac1965a51749534568965d91c
+Author: Mlynorik Alina <alina.sudnick@gmail.com>
+Date:   Thu Feb 11 17:30:51 2021 +0300
+
+    add .gitignore
+

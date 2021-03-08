@@ -11,24 +11,116 @@
 </header>
 
 <main>
-	
+	<div>
+		<h1>ORDERS</h1>
+		<button id="filter_button"><b>Filter</b>
+		 <img height="15px" src="img/filter.png">
+		</button>
+		<button id="order_taxi">
+		 <img height="20px" src="img/noto_taxi.png">
+		 <b>Order taxi</b>
+		</button>
+		<div id="posts">
+			<ul id="posts-list">
+				<li>
+					<div class="post font-Marcellius">
+							<img id="User-img" src="img/user.png">
+						    <p class="User content">@Username</p>
+						    <p class="Time content">11:11</p>
+						<div class="main-context">
+						<div>
+							<p class="content">Taxi company:</p>
+							<p class="content">KSP</p>
+						</div>
+						<div>
+							<p class="content">Taxi numper:</p>
+						    <p class="content">1125</p>
+						</div>
+						<div>
+							<img height="30px" src="img/like.png">
+							<p class="buttons">Do you like<br>this service?</p>
+							<img height="30px" src="img/edit.png">
+						    <p class="buttons">Edit</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="post font-Marcellius">
+							<img id="User-img" src="img/user.png">
+						    <p class="User content">@Username</p>
+						    <p class="Time content">11:11</p>
+						<div class="main-context">
+						<div>
+							<p class="content">Taxi company:</p>
+							<p class="content">KSP</p>
+						</div>
+						<div>
+							<p class="content">Taxi numper:</p>
+						    <p class="content">1125</p>
+						</div>
+						<div>
+							<img height="30px" src="img/like.png">
+							<p class="buttons">Do you like<br>this service?</p>
+							<img height="30px" src="img/edit.png">
+						    <p class="buttons">Edit</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="post font-Marcellius">
+							<img id="User-img" src="img/user.png">
+						    <p class="User content">@Username</p>
+						    <p class="Time content">11:11</p>
+						<div class="main-context">
+						<div>
+							<p class="content">Taxi company:</p>
+							<p class="content">KSP</p>
+						</div>
+						<div>
+							<p class="content">Taxi numper:</p>
+						    <p class="content">1125</p>
+						</div>
+						<div>
+							<img height="30px" src="img/like.png">
+							<p class="buttons">Do you like<br>this service?</p>
+							<img height="30px" src="img/edit.png">
+						    <p class="buttons">Edit</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<button id="show-more">Show more</button>
+		</div>
+	</div>
+	<div id="filter">
+		    <label for="by-user"><b><u>By user</u></b>
+		    <input type="text" name="by-user" id="by-user" value="@Username" pattern="^@[0-9a-zA-z]+$"></label>
+		    <label><b><u>By date</u></b></label>
+		    <label id="from-date">from 
+		    	<input type="text" name="from-date" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$"></label>
+		    <label id="to-date">to
+		    	<input type="text" name="to-date" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$"></label>
+		    <button id="search">Search</button>
+	</div>
 </main>
 
 <footer>
-	<table>
-		<tr>
-			<td>
-				<img src="img/Utaxi.png" align="left">
-			</td>
-			<td>
-				<p class="font-Marcellius">
-				<p>	This site was created by Mlynorik Alina</p>
-                <p>  Student of 2 course of 8 group</p>
-                <p></p>
-                <p> email: alina.sudnick@gmail.com</p>
-                <p>  last upd: 26.02.2021</p>
-			</td>
-		</tr>
+	<table class="font-Marcellius">
+		<tbody>
+		   <tr>
+			   <td align="right">
+				   <p>This site was created by Mlynorik Alina<br>
+				    Student of 2 course of 8 group</p>
+				</td>
+				<td align="middle" width="150px">
+				   <img height="80px" src="img/Utaxi.png">
+			   </td>
+				<td>
+                   <p> email: alina.sudnick@gmail.com<br>
+                    last upd: 26.02.2021</p>
+			    </td>
+		    </tr>
+	    </tbody>
 	</table>
 	
 </footer>

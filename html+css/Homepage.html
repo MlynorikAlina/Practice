@@ -4,6 +4,7 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="homepage_style.css">
+	<script src="posts.js"></script>
 </head>
 <body>
 <header>
@@ -12,28 +13,43 @@
 
 <main>
 	<div>
-		<h1>ORDERS</h1>
-		<button id="filter_button"><b>Filter</b>
-		 <img height="15px" src="img/filter.png">
-		</button>
+		<div>
+		    <h1>ORDERS</h1>
+		    <button id="filter_button"><b>Filter</b>
+		        <img height="15px" src="img/filter.png">
+		    </button>
+		<div id="filter" >
+		    <label for="by-user"><b><u>By user</u></b>
+		         <input type="text" name="by-user" id="by-user" class="font-Marcellius" value="@Username" pattern="^@[0-9a-zA-z]+$" >
+		    </label>
+		    <label><b><u>By date</u></b></label>
+		    <label id="from-date">from 
+		    	<input type="text" name="from-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$">
+		    </label>
+		    <label id="to-date">to
+		    	<input type="text" name="to-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$">
+		    </label>
+		    <button id="search">Search</button>
+	    </div>
 		<button id="order_taxi">
-		 <img height="20px" src="img/noto_taxi.png">
+		<img height="20px" src="img/noto_taxi.png">
 		 <b>Order taxi</b>
 		</button>
+	</div>
 		<div id="posts">
 			<ul id="posts-list">
 				<li>
 					<div class="post font-Marcellius">
 							<img id="User-img" src="img/user.png">
 						    <p class="User content">@Username</p>
-						    <p class="Time content">11:11</p>
+						    <p class="Time content">11.11.1111 11:11</p>
 						<div class="main-context">
 						<div>
 							<p class="content">Taxi company:</p>
 							<p class="content">KSP</p>
 						</div>
 						<div>
-							<p class="content">Taxi numper:</p>
+							<p class="content">Taxi number:</p>
 						    <p class="content">1125</p>
 						</div>
 						<div>
@@ -48,14 +64,14 @@
 					<div class="post font-Marcellius">
 							<img id="User-img" src="img/user.png">
 						    <p class="User content">@Username</p>
-						    <p class="Time content">11:11</p>
+						    <p class="Time content">11.11.1111 11:11</p>
 						<div class="main-context">
 						<div>
 							<p class="content">Taxi company:</p>
 							<p class="content">KSP</p>
 						</div>
 						<div>
-							<p class="content">Taxi numper:</p>
+							<p class="content">Taxi number:</p>
 						    <p class="content">1125</p>
 						</div>
 						<div>
@@ -70,14 +86,58 @@
 					<div class="post font-Marcellius">
 							<img id="User-img" src="img/user.png">
 						    <p class="User content">@Username</p>
-						    <p class="Time content">11:11</p>
+						    <p class="Time content">11.11.1111 11:11</p>
 						<div class="main-context">
 						<div>
 							<p class="content">Taxi company:</p>
 							<p class="content">KSP</p>
 						</div>
 						<div>
-							<p class="content">Taxi numper:</p>
+							<p class="content">Taxi number:</p>
+						    <p class="content">1125</p>
+						</div>
+						<div>
+							<img height="30px" src="img/like.png">
+							<p class="buttons">Do you like<br>this service?</p>
+							<img height="30px" src="img/edit.png">
+						    <p class="buttons">Edit</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="post font-Marcellius">
+							<img id="User-img" src="img/user.png">
+						    <p class="User content">@Username</p>
+						    <p class="Time content">11.11.1111 11:11</p>
+						<div class="main-context">
+						<div>
+							<p class="content">Taxi company:</p>
+							<p class="content">KSP</p>
+						</div>
+						<div>
+							<p class="content">Taxi number:</p>
+						    <p class="content">1125</p>
+						</div>
+						<div>
+							<img height="30px" src="img/like.png">
+							<p class="buttons">Do you like<br>this service?</p>
+							<img height="30px" src="img/edit.png">
+						    <p class="buttons">Edit</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="post font-Marcellius">
+							<img id="User-img" src="img/user.png">
+						    <p class="User content">@Username</p>
+						    <p class="Time content">11.11.1111 11:11</p>
+						<div class="main-context">
+						<div>
+							<p class="content">Taxi company:</p>
+							<p class="content">KSP</p>
+						</div>
+						<div>
+							<p class="content">Taxi number:</p>
 						    <p class="content">1125</p>
 						</div>
 						<div>
@@ -92,16 +152,7 @@
 			<button id="show-more">Show more</button>
 		</div>
 	</div>
-	<div id="filter">
-		    <label for="by-user"><b><u>By user</u></b>
-		    <input type="text" name="by-user" id="by-user" value="@Username" pattern="^@[0-9a-zA-z]+$"></label>
-		    <label><b><u>By date</u></b></label>
-		    <label id="from-date">from 
-		    	<input type="text" name="from-date" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$"></label>
-		    <label id="to-date">to
-		    	<input type="text" name="to-date" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$"></label>
-		    <button id="search">Search</button>
-	</div>
+	
 </main>
 
 <footer>
@@ -117,7 +168,7 @@
 			   </td>
 				<td>
                    <p> email: alina.sudnick@gmail.com<br>
-                    last upd: 26.02.2021</p>
+                    last upd: 09.03.2021</p>
 			    </td>
 		    </tr>
 	    </tbody>

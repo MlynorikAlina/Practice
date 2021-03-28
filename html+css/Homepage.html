@@ -4,12 +4,12 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="homepage_style.css">
+	<script src="posts.js"></script>
 </head>
 <body>
 <header>
 	<button id="sign_in_out" class="font-Marcellius">Sign in</button>
 </header>
-
 <main>
 	<div>
 		<div>
@@ -19,16 +19,16 @@
 		    </button>
 		<div id="filter" >
 		    <label for="by-user"><b><u>By user</u></b>
-		         <input type="text" name="by-user" id="by-user" class="font-Marcellius" value="@Username" pattern="^@[0-9a-zA-z]+$" >
+		         <input type="text" name="by-user" id="by-user" class="font-Marcellius" value="@Username" pattern="^@[0-9a-zA-z]+$" onchange="filterByUser(this)">
 		    </label>
 		    <label><b><u>By date</u></b></label>
 		    <label id="from-date">from 
-		    	<input type="text" name="from-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$">
+		    	<input type="text" name="from-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$" onchange="filterByTimeFrom(this)">
 		    </label>
 		    <label id="to-date">to
-		    	<input type="text" name="to-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$">
+		    	<input type="text" name="to-date" class="font-Marcellius" value="11.11.11 00:00" pattern="^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\s[0-9]{2}:[0-9]{2}$" onchange="filterByTimeTo(this)">
 		    </label>
-		    <button id="search">Search</button>
+		    <button id="search" onclick="filterPosts()">Search</button>
 	    </div>
 		<button id="order_taxi">
 		<img height="20px" src="img/noto_taxi.png">
@@ -37,30 +37,8 @@
 	</div>
 		<div id="posts">
 			<ul id="posts-list">
-				<li>
-					<div class="post font-Marcellius">
-							<img id="User-img" src="img/user.png">
-						    <p class="User content">@Username</p>
-						    <p class="Time content">11.11.1111 11:11</p>
-						<div class="main-context">
-						<div>
-							<p class="content">Taxi company:</p>
-							<p class="content">KSP</p>
-						</div>
-						<div>
-							<p class="content">Taxi number:</p>
-						    <p class="content">1125</p>
-						</div>
-						<div>
-							<img height="30px" src="img/like.png">
-							<p class="buttons">Do you like<br>this service?</p>
-							<img height="30px" src="img/edit.png">
-						    <p class="buttons">Edit</p>
-						</div>
-					</div>
-				</li>
 			</ul>
-			<button id="show-more">Show more</button>
+			<button id="show-more" onclick="showMore(this)">Show more</button>
 		</div>
 	</div>
 	
@@ -86,6 +64,5 @@
 	</table>
 	
 </footer>
-	<script src="posts.js"></script>
 </body>
 </html>

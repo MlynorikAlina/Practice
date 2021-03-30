@@ -1,36 +1,5 @@
-
-class postProcessing{
-
-	constructor(postsToAdd){
-		this._posts = postsToAdd;
-	}
-	loadPosts(){
-		this._posts.push(this.#makePost("1","@User1","2011.01.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User1","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User","2011.11.11 02:15","KLD","7584"));
-		this._posts.push(this.#makePost("1","@User5","2001.11.15 02:15","KLD","7584"));
-	}
-
-	print(){
-		console.log(this._posts);
-	}
-	#makePost(id,user,time,company,taxiNum){
+///"01-23-2004 15:30"
+function makePost(id,user,time,company,taxiNum){
 	if(typeof user == "string" && RegExp("^@[0-9a-zA-z]+$").test(user))
 			if(typeof time == "string" && RegExp("^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(time))
 				if(typeof id == "string" && RegExp("^[0-9]+$").test(id))
@@ -46,23 +15,60 @@ class postProcessing{
 		
 	}
     }
+class postProcessing{
+
+	constructor(postsToAdd){
+		this._posts = postsToAdd;
+	}
+	loadPosts(){
+		this._posts.push(makePost("1","@User1","2011.01.11 02:15","KLD","7584"));
+		this._posts.push(makePost("2","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("3","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("4","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("5","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("6","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("7","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("8","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("9","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("10","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("11","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("12","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("13","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("14","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("15","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("16","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("17","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("18","@User1","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("19","@User","2011.11.11 02:15","KLD","7584"));
+		this._posts.push(makePost("20","@User5","2001.11.15 02:15","KLD","7584"));
+	}
+
+	print(){
+		console.log(this._posts);
+	}
+	
 
 	getPostById(id){
 		return this._posts.find((el,elId,arr)=>{return el.id == id;});
 	}
 	validatePost(Post){
 		if(typeof Post.user == "string" && RegExp("^@[0-9a-zA-z]+$").test(Post.user))
-			if(typeof Post.time == Date)
+			if(typeof Post.date == "object")
 				if(typeof Post.id == "string" && RegExp("^[0-9]+$").test(Post.id))
 					if(typeof Post.company == "string"&&typeof Post.taxiNum == "string") return true;
 		return false;
 	}
 	addPost(Post) {
-		if(validatePost(Post))this._posts.push(Post);
-		else alert("Error::addPost");
+		if(this.validatePost(Post)){
+			this._posts.push(Post);
+			return true;
+		}
+		else return false;
 	}
 	addAll(postsToAdd){
-		postsToAdd.forEach((el)=>{if(this.validatePost(el))this._posts.push(el);});
+		let flag = true;
+		postsToAdd.forEach((el)=>{if(!this.addPost(el))flag = false;});
+		return flag;
 	}
 	getPosts(skip = 0, top = 10, filterConfig = {user:null,timeFrom:null,timeTo:null}){
 		return this._posts.filter(el=>(filterConfig.user == null || filterConfig.user == el.user) 
@@ -70,6 +76,29 @@ class postProcessing{
 	}
 	getPostsNum(){
 		return this._posts.length;
+	}
+	editPost(id,Post){
+		for(let i=0;i<this._posts.length;i++){
+			if(this._posts[i].id == id){
+				this._posts[i] = Post;
+				return true;
+			}
+		}
+		return false;
+	}
+	removePost(id){
+		let flag = false;
+		for(let i=0;i<this._posts.length;i++){
+			if(!flag){
+			if(this._posts[i].id == id){
+				flag=true;
+			}
+		    }else{
+		    	this._posts[i-1] = this._posts[i];
+		    }
+		}
+		if(flag)this._posts.pop();
+		return flag;
 	}
 	
 }
@@ -95,14 +124,14 @@ function command(cmnd,id=1)  {
 function CreateNewPost(Post){
    let li = document.createElement('li');
    options = {
-   year: '2-digit', month: '2-digit', day: '2-digit',
+   year: 'numeric', month: 'short', day: '2-digit',
    hour: '2-digit', minute: '2-digit',
    hour12: false
    };
    li.innerHTML = `<div class="post font-Marcellius">
 							<img id="User-img" src="img/user.png">
 						    <p class="User content">${Post.user}</p>
-						    <p class="Time content">${new Intl.DateTimeFormat('en-GB',options).format(Post.date)}</p>
+						    <p class="Time content">${new Intl.DateTimeFormat('en',options).format(Post.date)}</p>
 						<div class="main-context">
 						<div>
 							<p class="content">Taxi company:</p>

@@ -4,6 +4,8 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="homepage_style.css">
+	<script src="Filter.js"></script>
+	<script src="PostsProcessing.js"></script>
 	<script src="posts.js"></script>
 </head>
 <body>
@@ -21,7 +23,7 @@
 		    </button>
 		<div id="filter" >
 		    <label for="by-user"><b><u>By user</u></b>
-		         <input type="text" name="by-user" id="by-user" class="font-Marcellius" value="@Username" pattern="^@[0-9a-zA-z]+$" onchange="Filter.filterByUser(this)">
+		         <input type="text" name="by-user" id="by-user" class="font-Marcellius" value="Username" pattern="^[0-9a-zA-z\s]+$" onchange="Filter.filterByUser(this)">
 		    </label>
 		    <label><b><u>By date</u></b></label>
 		    <label id="from-date">from 
@@ -40,7 +42,7 @@
 		<div id="posts">
 			<ul id="posts-list">
 			</ul>
-			<button id="show-more" onclick="showMore(this)">Show more</button>
+			<button id="show-more" onclick="ViewPosts.showMore(this)">Show more</button>
 		</div>
 	</div>
 	

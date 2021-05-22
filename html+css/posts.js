@@ -56,7 +56,7 @@ class ViewPosts {
     static updateShowButton(){
         if (ViewPosts.postsOnPage < ViewPosts.maxPostsCount){
             ViewPosts.#button.style.display = "block";
-        }
+        }else ViewPosts.#button.style.display = "none";
     }
     static editPost(index,Post){
         let postsList = document.getElementById("posts-list");

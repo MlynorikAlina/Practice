@@ -7,22 +7,23 @@ class Filter {
             Filter.#tempFilterConfig.user = inputUser.value;
         } else {
             inputUser.style.color = '#FF0000';
+            Filter.#tempFilterConfig.user = null;
         }
     }
 
     static filterByTimeFrom(inputTimeFrom) {
-        if (typeof inputTimeFrom.value == "string" && RegExp("^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(inputTimeFrom.value)) {
+        if (typeof inputTimeFrom.value == "string" && RegExp("^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(inputTimeFrom.value)) {
             inputTimeFrom.style.color = '#848484';
-            Filter.#tempFilterConfig.timeFrom = inputTimeFrom.value;
+            Filter.#tempFilterConfig.timeFrom = new Date(inputTimeFrom.value);
         } else {
             inputTimeFrom.style.color = '#FF0000';
         }
     }
 
     static filterByTimeTo(inputTimeTo) {
-        if (typeof inputTimeTo.value == "string" && RegExp("^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(inputTimeTo.value)) {
+        if (typeof inputTimeTo.value == "string" && RegExp("^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(inputTimeTo.value)) {
             inputTimeTo.style.color = '#848484';
-            Filter.#tempFilterConfig.timeTo = inputTimeTo.value;
+            Filter.#tempFilterConfig.timeTo = new Date(inputTimeTo.value);
         } else {
             inputTimeTo.style.color = '#FF0000';
         }
@@ -31,7 +32,6 @@ class Filter {
     static filterPosts() {
         let postsList = document.getElementById('posts-list');
         let showMoreButton = document.getElementById('show-more');
-        showMoreButton.style.display = 'inline-block';
         while (postsList.firstChild) {
             postsList.removeChild(postsList.firstChild);
         }
@@ -45,9 +45,12 @@ class Filter {
             });
         } else {
             let li = document.createElement('li');
-            li.innerHTML = 'No results';
+            li.innerHTML = `<img src="img/no_results.jpg">`;
+            li.style.textAlign = "center";
+            li.style.backgroundColor = "transparent";
             postsList.appendChild(li);
         }
+        ViewPosts.updateShowButton();
         if (ViewHeader.postsOnPage >= ViewHeader.maxPostsCount) {
             showMoreButton.style.display = "none";
         }

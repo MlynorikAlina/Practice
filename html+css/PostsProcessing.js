@@ -12,10 +12,10 @@ let user = new User("M Alice");
 
 function makePost(id, user, time, company, taxiNum) {
     if (typeof user == "string" && RegExp("^[0-9a-zA-z\\s]+$").test(user))
-        if (typeof time == "string" && RegExp("^[0-9]{4}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(time))
+        if (typeof time == "string" && RegExp("^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(time))
             if (typeof id == "string" && RegExp("^[0-9]+$").test(id))
                 if (typeof company == "string" && typeof taxiNum == "string") {
-                    let date = new Date(Date.parse(time.replace(/(\d{4})\.(\d{2})\.(\d{4})/, '$3-$2-$1')));
+                    let date = new Date(time);
                     return {
                         id,
                         user,
@@ -35,26 +35,26 @@ class PostProcessing {
         ViewPosts.maxPostsCount  = this._posts.length;
     }
     #loadPosts() {
-        this._posts.push(makePost("1", "User1", "2011.01.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("2", "User2", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("3", "User3", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("4", "User4", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("5", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("6", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("7", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("8", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("9", "User1", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("10", "User2", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("11", "User3", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("12", "User4", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("13", "User4", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("14", "User3", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("15", "User1", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("16", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("17", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("18", "User1", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("19", "User", "2011.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("20", "User5", "2001.11.15 02:15", "KLD", "7584"));
+        this._posts.push(makePost("1", "User1", "01.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("2", "User2", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("3", "User3", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("4", "User4", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("5", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("6", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("7", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("8", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("9", "User1", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("10", "User2", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("11", "User3", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("12", "User4", "01.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("13", "User4", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("14", "User3", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("15", "User1", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("16", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("17", "User", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("18", "User1", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("19", "M Alice", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("20", "User5", "11.11.11 02:15", "KLD", "7584"));
     }
 
     getPostById(id) {
@@ -90,7 +90,8 @@ class PostProcessing {
 
     getPosts(skip = 0, top = 10, filterConfig = {user: null, timeFrom: null, timeTo: null}) {
         return this._posts.filter(el => (filterConfig.user == null || filterConfig.user === el.user)
-            && (filterConfig.timeFrom == null || filterConfig.timeFrom <= el.time) && (filterConfig.timeTo == null || filterConfig.timeTo >= el.time)).slice(skip, skip + top);
+            && (filterConfig.timeFrom == null || filterConfig.timeFrom <= el.date)
+            && (filterConfig.timeTo == null || filterConfig.timeTo >= el.date)).slice(skip, skip + top);
     }
 
 

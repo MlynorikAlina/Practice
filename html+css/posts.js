@@ -7,16 +7,17 @@ function CreateNewPost(Post) {
         hour12: false
     };
     let ifUser = "";
-    if (Post.user === user.getName()) {
+    if (Post.user === User.getName()) {
         ifUser = `<div  class="buttons">
                        <img height="30px" src="img/edit.png">
                        <p  class="buttons">Edit</p>
                  </div>`;
     }
     li.innerHTML = `<div class="post font-Marcellius" id="post${Post.id}">
+                            <div id="hiden_id_num">${Post.id}</div>
 							<img id="User-img" src="img/user.png">
 						    <p class="User content">${Post.user}</p>
-						    <p class="Time content">${new Intl.DateTimeFormat('en', options).format(Post.date)}</p>
+						    <p class="Time content">${Post.date.toLocaleString('en', options)}</p>
 						<div class="main-context">
 						<div>
 							<p class="content">Taxi company:</p>
@@ -49,18 +50,21 @@ class ViewPosts {
             postsList.appendChild(CreateNewPost(el));
             ViewPosts.postsOnPage++;
         });
+        localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
         if (ViewPosts.postsOnPage >= ViewPosts.maxPostsCount) {
             ViewPosts.#button.style.display = "none";
         }
+        localStorage.setItem("main-content",document.getElementById('main-content').innerHTML);
     }
     static updateShowButton(){
         if (ViewPosts.postsOnPage < ViewPosts.maxPostsCount){
             ViewPosts.#button.style.display = "block";
-        }else ViewPosts.#button.style.display = "none";
+        }else {ViewPosts.#button.style.display = "none";}
     }
     static editPost(index,Post){
         let postsList = document.getElementById("posts-list");
         postsList.replaceChild(CreateNewPost(Post),postsList.children[index]);
+        localStorage.setItem("main-content",document.getElementById('main-content').innerHTML);
     }
     static removePost(index){
         let postsList = document.getElementById("posts-list");
@@ -73,31 +77,55 @@ class ViewPosts {
                 postsList.appendChild(CreateNewPost(myPosts.getPosts(0,myPosts.getPostsNum(),Filter.getFilterConfig())
                     .slice(ViewPosts.postsOnPage,ViewPosts.postsOnPage+1)[0]));
 
-            }else ViewPosts.postsOnPage--;
+            }else {
+                ViewPosts.postsOnPage--;
+                localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
+            }
         }
+        localStorage.setItem("main-content",document.getElementById('main-content').innerHTML);
     }
 }
 
 class ViewHeader {
+    static #username = document.getElementById("username");
     static display() {
-        if (user.getName() != null) {
-            let username = document.getElementById("username");
-            username.innerText = user.getName();
-            username.style.display = "block";
-        }
+        if (User.getName() != null && User.getName() !== "") {
+            this.#username.innerText = User.getName();
+            this.#username.style.display = "block";
+        }else this.#username.style.display = "none";
+    }
+    static hide(){
+        this.#username.style.display = "none";
     }
 }
 
 
 let myPosts = new PostProcessing([]);
+new ViewPosts();
+let postsList = document.getElementById('posts-list');
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    new ViewPosts();
-    let postsList = document.getElementById('posts-list');
-    myPosts.getPosts().forEach((el) => {
-        postsList.appendChild(CreateNewPost(el))
-    });
-    ViewPosts.postsOnPage += 10;
+    document.addEventListener("DOMContentLoaded", function (){
+        myPosts.loadFromLocal();
+    if(localStorage.getItem("main-content")!=null)
+        document.getElementById('main-content').innerHTML = localStorage.getItem("main-content");
+    else{
+        myPosts.getPosts().forEach((el) => {
+            postsList.appendChild(CreateNewPost(el))
+        });
+        ViewPosts.postsOnPage += 10;
+        localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
+        ViewHeader.display();
+    }
+    SignInOutController.loadFromLocal();
+    FormController.loadFromLocal();
+    User.setName(localStorage.getItem("Username"));
     ViewHeader.display();
+    if(localStorage.getItem("singInOut")!=null)document.getElementById("sign_in_out").innerHTML=localStorage.getItem("singInOut");
+    if(localStorage.getItem("taxiButton")!=null)
+        document.getElementById("order_taxi").style.display = localStorage.getItem("taxiButton");
+    if(localStorage.getItem("mainShown")!=null)
+        document.getElementById('main-content').style.display = localStorage.getItem("mainShown");
+    if(localStorage.getItem("postsOnPage")!=null)
+        ViewPosts.postsOnPage = parseInt(localStorage.getItem("postsOnPage"));
 });

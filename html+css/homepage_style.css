@@ -71,7 +71,7 @@ background-color: #C4C4C4;
 padding-left: 5px;
 padding-top: 20px;
 }
-input[type="text"]{
+input{
 	border-radius: 10px;
 	border:none;
 	color: #848484;
@@ -117,6 +117,7 @@ h1{
 }
 #order_taxi{
 	float: right;
+	display: none;
 }
 #posts{
 	width: 80%;
@@ -162,6 +163,7 @@ h1{
 }
 #bg{
 	width: 100%;
+	margin-top: 50px;
 }
 #username{
 	color:#ffc700;
@@ -171,5 +173,67 @@ h1{
 	display: none;
 }
 #edit_button{
+	display: none;
+}
+#sign_in_form{
+	position: relative;
+	display: block;
+	top: -60vh;
+	margin-bottom: -36vh;
+	left: 50vw;
+	margin-left: -17vw;
+	height: 36vh;
+	width: 35vw;
+	border: solid;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 20px;
+	padding-top:4vh;
+}
+#sign_in_form>p, #order_form > p{
+	font-family: Manuale;
+	font-size: 28px;
+	margin-left: 20%;
+	margin-bottom: 5%;
+	color: #5F5B5B;
+}
+#order_form > p{
+	margin-left: 10%;
+}
+#sign_in_form> p > input, #order_form > p > input{
+	font-size: 25px;
+	background: none;
+	border-style: none none solid none;
+	border-width: 2px;
+	color: #5F5B5B;
+}
+#sign_in_form > button, #order_form>div>button{
+	font-size: 28px;
+	border-style: none none solid none;
+	border-width: 2px;
+	opacity: 70%;
+	margin-left: 40%;
+}
+#load_content{
+	height: 0px;
+	margin-bottom: -5px;
+}
+#order_form{
+	position: relative;
+	display: block;
+	left: 10vw;
+	width: 30vw;
+	height: 60vh;
+	top: -80vh;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 20px;
+	padding-top:4vh;
+}
+#order_form>div{
+	display: flex;
+}
+#order_form>div>button{
+	margin-left: 20%;
+}
+#hiden_id_num{
 	display: none;
 }

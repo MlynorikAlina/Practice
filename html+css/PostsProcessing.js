@@ -1,60 +1,66 @@
 class User {
-    constructor(username) {
-        this._name = username;
+    constructor() {
+        this._name = "";
     }
 
-    getName() {
+    static getName() {
         return this._name;
+    }
+    static setName(username){
+        this._name = username;
     }
 }
 
-let user = new User("M Alice");
 
-function makePost(id, user, time, company, taxiNum) {
-    if (typeof user == "string" && RegExp("^[0-9a-zA-z\\s]+$").test(user))
-        if (typeof time == "string" && RegExp("^[0-9]{2}\.[0-9]{2}\.[0-9]{2}\\s[0-9]{2}:[0-9]{2}$").test(time))
+function makePost(name,phone, id, user, date, company, taxiNum) {
+    if (typeof user == "string")
+        if (typeof date == "object")
             if (typeof id == "string" && RegExp("^[0-9]+$").test(id))
                 if (typeof company == "string" && typeof taxiNum == "string") {
-                    let date = new Date(time);
                     return {
                         id,
                         user,
                         date,
                         company,
-                        taxiNum
+                        taxiNum,
+                        name,
+                        phone
                     };
 
                 }
 }
 
 class PostProcessing {
-
+    #nextID;
     constructor(postsToAdd) {
         this._posts = postsToAdd;
         this.#loadPosts();
         ViewPosts.maxPostsCount  = this._posts.length;
     }
     #loadPosts() {
-        this._posts.push(makePost("1", "User1", "01.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("2", "User2", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("3", "User3", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("4", "User4", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("5", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("6", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("7", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("8", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("9", "User1", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("10", "User2", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("11", "User3", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("12", "User4", "01.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("13", "User4", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("14", "User3", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("15", "User1", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("16", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("17", "User", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("18", "User1", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("19", "M Alice", "11.11.11 02:15", "KLD", "7584"));
-        this._posts.push(makePost("20", "User5", "11.11.11 02:15", "KLD", "7584"));
+        this._posts.push(makePost("N","pj","1", "User1", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","2", "User2", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","3", "User3", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","4", "User4", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","5", "User", new Date("11.21.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","6", "User", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","7", "User", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","8", "User", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","9", "User1", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","10", "User2", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","11", "User3", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","12", "User4", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","13", "User4", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","14", "User3", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","15", "User1", new Date("01.12.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","16", "User", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","17", "User", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","18", "User1", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","19", "M Alice", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this._posts.push(makePost("N","pj","20", "User5", new Date("01.11.11 02:15"), "KLD", "7584"));
+        this.#nextID=21;
+        localStorage.setItem("posts",JSON.stringify(this._posts));
+        localStorage.setItem('postsNextID',this.#nextID.toString());
     }
 
     getPostById(id) {
@@ -64,7 +70,7 @@ class PostProcessing {
     }
 
     validatePost(Post) {
-        if (typeof Post.user == "string" && RegExp("^[0-9a-zA-z\\s]+$").test(Post.user))
+        if (typeof Post.user == "string")
             if (typeof Post.date == "object")
                 if (typeof Post.id == "string" && RegExp("^[0-9]+$").test(Post.id))
                     if (typeof Post.company == "string" && typeof Post.taxiNum == "string") return true;
@@ -75,9 +81,16 @@ class PostProcessing {
         if (this.validatePost(Post)) {
             this._posts.push(Post);
             ViewPosts.maxPostsCount++;
+            localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
             ViewPosts.updateShowButton();
+            this.#nextID++;
+            localStorage.setItem("posts",JSON.stringify(this._posts));
+            localStorage.setItem('postsNextID',this.#nextID.toString());
             return true;
         } else return false;
+    }
+    getNextID(){
+        return this.#nextID;
     }
 
     addAll(postsToAdd) {
@@ -103,6 +116,7 @@ class PostProcessing {
                 return true;
             }
         }
+        localStorage.setItem("posts",JSON.stringify(this._posts));
         return false;
     }
 
@@ -112,6 +126,7 @@ class PostProcessing {
             if (!flag) {
                 if (this._posts[i].id === id) {
                     ViewPosts.maxPostsCount--;
+                    localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
                     ViewPosts.removePost(i);
                     flag = true;
                 }
@@ -119,10 +134,17 @@ class PostProcessing {
                 this._posts[i - 1] = this._posts[i];
             }
         }
-        if (flag) this._posts.pop();
+        if (flag) {
+            this._posts.pop();
+            localStorage.setItem("posts",JSON.stringify(this._posts));
+        }
         return flag;
     }
     getPostsNum() {
         return this._posts.length;
+    }
+    loadFromLocal(){
+        if(localStorage.getItem('postsNextID')!=null)this.#nextID = parseInt(localStorage.getItem('postsNextID'));
+        if(localStorage.getItem("posts")!=null)this._posts = JSON.parse(localStorage.getItem("posts"));
     }
 }

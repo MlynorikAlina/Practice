@@ -1,20 +1,20 @@
 <!DOCTYPE HTML>
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="homepage_style.css">
-	<script src="Filter.js"></script>
-	<script src="PostsProcessing.js"></script>
-	<script src="posts.js"></script>
+	
+	
 </head>
 <body>
 <header>
 	<p id="username" class="font-Marcellius">User</p>
-	<button id="sign_in_out" class="font-Marcellius">Sign in</button>
+	<button id="sign_in_out" class="font-Marcellius" onclick="SignInOutController.resetFlag()">Sign in</button>
 </header>
 <img id="bg" src="img/background.jpg">
-<main>
+<div id="load_content">
+</div>
+<main id="main-content">
 	<div>
 		<div>
 		    <h1>ORDERS</h1>
@@ -34,7 +34,7 @@
 		    </label>
 		    <button id="search" onclick="Filter.filterPosts()">Search</button>
 	    </div>
-		<button id="order_taxi">
+		<button id="order_taxi" onclick="FormController.openForm()">
 		<img height="20px" src="img/noto_taxi.png">
 		 <b>Order taxi</b>
 		</button>
@@ -69,4 +69,10 @@
 	
 </footer>
 </body>
+<script src="Filter.js"></script>
+<script src="PostsProcessing.js"></script>
+<script src="SignInOutController.js"></script>
+<script src="Forms.js"></script>
+<script src="FormController.js"></script>
+<script src="posts.js"></script>
 </html>

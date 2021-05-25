@@ -28,6 +28,10 @@ class Filter {
             inputTimeTo.style.color = '#FF0000';
         }
     }
+    static resetFilter() {
+        this.#tempFilterConfig = {user: null, timeFrom: null, timeTo: null};
+        this.filterPosts();
+    }
 
     static filterPosts() {
         let postsList = document.getElementById('posts-list');
@@ -36,6 +40,7 @@ class Filter {
             postsList.removeChild(postsList.firstChild);
         }
         ViewPosts.postsOnPage = 0;
+        localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
         let posts = myPosts.getPosts(ViewPosts.postsOnPage, myPosts.getPostsNum(), Filter.#tempFilterConfig);
         ViewPosts.maxPostsCount = posts.length;
         if (posts.length !== 0) {
@@ -43,6 +48,7 @@ class Filter {
                 postsList.appendChild(CreateNewPost(el));
                 ViewPosts.postsOnPage++;
             });
+            localStorage.setItem("postsOnPage",ViewPosts.postsOnPage.toString());
         } else {
             let li = document.createElement('li');
             li.innerHTML = `<img src="img/no_results.jpg">`;
@@ -51,9 +57,10 @@ class Filter {
             postsList.appendChild(li);
         }
         ViewPosts.updateShowButton();
-        if (ViewHeader.postsOnPage >= ViewHeader.maxPostsCount) {
+        if (ViewPosts.postsOnPage >= ViewPosts.maxPostsCount) {
             showMoreButton.style.display = "none";
         }
+        localStorage.setItem("main-content",document.getElementById('main-content').innerHTML);
     }
     static getFilterConfig(){
         return Filter.#tempFilterConfig;
